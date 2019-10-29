@@ -5,20 +5,28 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    talks: [
-      {
-        id: 1,
-        title: "When Mystery Guests Become Stowaways"
-      },
-      {
-        id: 2,
-        title: "Top 10 Slide Animations for Designers"
-      },
-      {
-        id: 3,
-        title: "Q4 2019 Financial Updates for the Life Economy"
-      }
-    ],
+    talks: [],
+  };
+
+  componentDidMount() {
+    this.requestTalks();
+  };
+
+  requestTalks = () => {
+    this.callApi()
+      .then(res => this.setState({ talks: res.talks }))
+      .catch(err => console.log("Error reaching Talks API: ", err));
+  };
+
+  callApi = async () => {
+    const response = await fetch("/api/talks");
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message);
+    }
+
+    return body;
   };
 
   removeTalk = indexToRemove => {
@@ -31,10 +39,19 @@ class App extends Component {
     });
   };
 
-  handleSubmit = talk => {
-    this.setState({
-      talks: [...this.state.talks, talk]
+  handleSubmit = async talk => {
+    const response = await fetch("/api/talks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ talk: talk }),
     });
+
+    const talkResponse = await response.text();
+    const newTalk = JSON.parse(talkResponse);
+
+    this.setState({ talks: [...this.state.talks, newTalk] });
   };
 
   render() {
