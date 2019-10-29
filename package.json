@@ -1,0 +1,38 @@
+{
+  "author": "Todd Morningstar <todd@thoughtbot.com> (https://thoughtbot.com)",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "3.2.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "keywords": ["lightning", "talks", "CMS"],
+  "license": "GPLv3",
+  "name": "lightning",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stratigos/lightning.git"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "version": "0.0.0"
+}
