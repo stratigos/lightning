@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Table from "./Table";
+import Form from "./Form";
 import "./App.css";
 
 class App extends Component {
@@ -30,12 +31,11 @@ class App extends Component {
     });
   };
 
-  // 🏗 ----- Construction - this isnt here! ----- 🙈
-  // handleSubmit = talk => {
-  //   this.setState({
-  //     talks: [...this.state.talks, talk]
-  //   });
-  // };
+  handleSubmit = talk => {
+    this.setState({
+      talks: [...this.state.talks, talk]
+    });
+  };
 
   render() {
     const { talks } = this.state;
@@ -56,6 +56,9 @@ class App extends Component {
               removeTalk={this.removeTalk}
             />
           </div>
+          <div className="container talk-form-container">
+            <Form handleSubmit={this.handleSubmit} />
+          </div>
           <div className="container">
             <a
               className="App-link"
@@ -68,6 +71,6 @@ class App extends Component {
       </div>
     );
   };
-}
+};
 
 export default App;
