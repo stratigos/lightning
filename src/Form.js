@@ -20,7 +20,9 @@ class Form extends Component {
     });
   };
 
-  submitForm = () => {
+  submitForm = event => {
+    event.preventDefault();
+
     this.props.handleSubmit(this.state);
     this.setState(this.initialState);
   };

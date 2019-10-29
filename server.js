@@ -23,22 +23,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/talks", (req, res) => {
+  console.log("Server: GET request received");
+
   res.send({ talks: talks });
 });
 
 app.post("/api/talks", (req, res) => {
-  console.log("Server: Request Received:", req.body);
+  console.log("Server: POST request received: ", req.body);
 
   newTalk = {
-    id: 12345, // TODO 🌈
-    title: "TODO GET TALK TITLE FROM POST REQUEST BODY",
+    id: 12345 + Math.round(Math.random() * 10),
+    title: req.body.talk.title,
   };
 
   talks = [...talks, newTalk];
 
-  res.send(
-    `Talks have been updated with: ${req.body.post}`,
-  );
+  res.send(newTalk);
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
