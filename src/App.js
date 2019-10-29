@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Table from "./Table"
+import Table from "./Table";
 import "./App.css";
 
 class App extends Component {
@@ -12,21 +12,25 @@ class App extends Component {
       {
         id: 2,
         title: "Top 10 Slide Animations for Designers"
+      },
+      {
+        id: 3,
+        title: "Q4 2019 Financial Updates for the Life Economy"
       }
     ],
   };
 
+  removeTalk = indexToRemove => {
+    const { talks } = this.state;
+
+    this.setState({
+      talks: talks.filter((_talk, index) => {
+        return index !== indexToRemove;
+      })
+    });
+  };
+
   // 🏗 ----- Construction - this isnt here! ----- 🙈
-  // removeTalk = indexToRemove => {
-  //   const { talks } = this.state;
-
-  //   this.setState({
-  //     talks: talks.filter((_talk, index) => {
-  //       return index !== indexToRemove
-  //     })
-  //   });
-  // };
-
   // handleSubmit = talk => {
   //   this.setState({
   //     talks: [...this.state.talks, talk]
@@ -47,7 +51,10 @@ class App extends Component {
             <span role="img" aria-label="lightning">⚡</span>
           </p>
           <div className="container talk-table-container">
-            <Table talks={talks} />
+            <Table
+              talks={talks}
+              removeTalk={this.removeTalk}
+            />
           </div>
           <div className="container">
             <a
@@ -60,7 +67,7 @@ class App extends Component {
         </header>
       </div>
     );
-  }
+  };
 }
 
 export default App;
