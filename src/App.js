@@ -5,20 +5,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    talks: [
-      {
-        id: 1,
-        title: "When Mystery Guests Become Stowaways"
-      },
-      {
-        id: 2,
-        title: "Top 10 Slide Animations for Designers"
-      },
-      {
-        id: 3,
-        title: "Q4 2019 Financial Updates for the Life Economy"
-      }
-    ],
+    talks: [],
   };
 
   removeTalk = indexToRemove => {
