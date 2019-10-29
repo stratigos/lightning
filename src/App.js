@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Table from "./Table"
 import "./App.css";
 
 class App extends Component {
@@ -15,47 +16,48 @@ class App extends Component {
     ],
   };
 
-  removeTalk = indexToRemove => {
-    const { talks } = this.state;
+  // 🏗 ----- Construction - this isnt here! ----- 🙈
+  // removeTalk = indexToRemove => {
+  //   const { talks } = this.state;
 
-    this.setState({
-      talks: talks.filter((_talk, index) => {
-        return index !== indexToRemove
-      })
-    });
-  };
+  //   this.setState({
+  //     talks: talks.filter((_talk, index) => {
+  //       return index !== indexToRemove
+  //     })
+  //   });
+  // };
 
-  handleSubmit = talk => {
-    this.setState({
-      talks: [...this.state.talks, talk]
-    });
-  };
+  // handleSubmit = talk => {
+  //   this.setState({
+  //     talks: [...this.state.talks, talk]
+  //   });
+  // };
 
   render() {
     const { talks } = this.state;
-    const talkListItems = talks.map((talk, index) => {
-      return <li key={talk.id} className="talk-list-item">{talk.title}</li>;
-    });
 
     return (
       <div className="App">
         <header className="App-header">
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            <span role="img" aria-label="lightning">⚡</span>
+            &nbsp;Ligtning&nbsp;
+            <span role="img">🗣</span>
+            &nbsp;Talks&nbsp;
+            <span role="img" aria-label="lightning">⚡</span>
           </p>
-          <a
-            className="App-link"
-            href="https://thoughtbot.com/san-francisco"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Visit thoughtbot</a>
+          <div className="container talk-table-container">
+            <Table talks={talks} />
+          </div>
+          <div className="container">
+            <a
+              className="App-link"
+              href="https://thoughtbot.com/san-francisco"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Visit thoughtbot</a>
+          </div>
         </header>
-
-        <div className="container">
-          <ul className="talk-list">
-            {talkListItems}
-          </ul>
-        </div>
       </div>
     );
   }
