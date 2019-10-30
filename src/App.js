@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import AppTitle from "./AppTitle";
 import Home from "./Home";
 import Nav from "./Nav";
 import "./App.css";
@@ -68,13 +69,7 @@ class App extends Component {
         <div className="App">
           <Nav />
           <header className="App-header">
-            <p>
-              <span role="img" aria-label="lightning">⚡</span>
-              &nbsp;Ligtning&nbsp;
-              <span role="img" aria-label="talk">🗣</span>
-              &nbsp;Talks&nbsp;
-              <span role="img" aria-label="lightning">⚡</span>
-            </p>
+            <AppTitle />
             <Switch>
               <Route path="/">
                 <Home
