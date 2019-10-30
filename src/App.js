@@ -46,7 +46,7 @@ class App extends Component {
     });
   };
 
-  handleSubmit = async talk => {
+  handleNewTalkSubmit = async talk => {
     const response = await fetch("/api/talks", {
       method: "POST",
       headers: {
@@ -73,13 +73,17 @@ class App extends Component {
             <Switch>
               <Route path="/" exact>
                 <Home
-                  handleSubmit={this.handleSubmit}
+                  handleNewTalkSubmit={this.handleNewTalkSubmit}
                   removeTalk={this.removeTalk}
                   talks={talks}
                 />
               </Route>
-              <Route path={`/talks/:talkId`}>
-                <ShowTalk talks={talks} requestTalk={this.requestTalk} />
+              <Route path={`/talks/:talkId`} exact>
+                <ShowTalk talks={talks} />
+              </Route>
+              <Route path={`/talks/:talkId/edit`} exact>
+                {/*<EditTalk talks={talks} editTalk={this.editTalk} />*/}
+                <h1>EditTalk</h1>
               </Route>
             </Switch>
           </header>

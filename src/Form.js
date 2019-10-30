@@ -23,7 +23,7 @@ class Form extends Component {
   submitForm = event => {
     event.preventDefault();
 
-    this.props.handleSubmit(this.state);
+    this.props.handleNewTalkSubmit(this.state);
     this.setState(this.initialState);
   };
 

@@ -10,7 +10,7 @@ const Talk = props => {
       </div>
       <div>
         <button>
-          <span role="img" aria-label={`edit-talk-${talkRecord.id}`}>📝</span>
+          <span role="img" aria-label={`edit talk ${talkRecord.id}`}>📝</span>
         </button>
       </div>
     </div>
