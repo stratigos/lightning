@@ -5,8 +5,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Table from "./Table";
 import Form from "./Form";
+import Table from "./Table";
+import Nav from "./Nav";
 import "./App.css";
 
 class App extends Component {
@@ -66,28 +67,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">
-                  <span role="img" aria-label="home">⚡🗣</span>
-                </Link>
-              </li>
-              <li>
-                <a
-                  className="App-link"
-                  href="https://thoughtbot.com/san-francisco"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >Visit thoughtbot</a>
-              </li>
-            </ul>
-          </nav>
+          <Nav />
           <header className="App-header">
             <p>
               <span role="img" aria-label="lightning">⚡</span>
               &nbsp;Ligtning&nbsp;
-              <span role="img">🗣</span>
+              <span role="img" aria-label="talk">🗣</span>
               &nbsp;Talks&nbsp;
               <span role="img" aria-label="lightning">⚡</span>
             </p>
@@ -102,6 +87,11 @@ class App extends Component {
             </div>
           </header>
           <Switch>
+            {/*}
+            <Route path="/">
+              <Home />
+            </Route>
+            */}
           </Switch>
         </div>
       </Router>
