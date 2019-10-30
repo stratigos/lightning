@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link
+  Switch
 } from "react-router-dom";
 import AppTitle from "./AppTitle";
 import Home from "./Home";
 import Nav from "./Nav";
+import ShowTalk from "./ShowTalk";
 import "./App.css";
 
 class App extends Component {
@@ -71,12 +71,16 @@ class App extends Component {
           <header className="App-header">
             <AppTitle />
             <Switch>
-              <Route path="/">
+              <Route path="/" exact>
                 <Home
                   handleSubmit={this.handleSubmit}
                   removeTalk={this.removeTalk}
                   talks={talks}
                 />
+              </Route>
+              <Route path={`/talks/:talkId`}>
+                <h1>WTF</h1>
+                <ShowTalk talks={talks} requestTalk={this.requestTalk} />
               </Route>
             </Switch>
           </header>
