@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import Table from "./Table";
 import Form from "./Form";
 import "./App.css";
@@ -58,34 +64,47 @@ class App extends Component {
     const { talks } = this.state;
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            <span role="img" aria-label="lightning">⚡</span>
-            &nbsp;Ligtning&nbsp;
-            <span role="img">🗣</span>
-            &nbsp;Talks&nbsp;
-            <span role="img" aria-label="lightning">⚡</span>
-          </p>
-          <div className="container talk-table-container">
-            <Table
-              talks={talks}
-              removeTalk={this.removeTalk}
-            />
-          </div>
-          <div className="container talk-form-container">
-            <Form handleSubmit={this.handleSubmit} />
-          </div>
-          <div className="container">
-            <a
-              className="App-link"
-              href="https://thoughtbot.com/san-francisco"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Visit thoughtbot</a>
-          </div>
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span role="img" aria-label="home">⚡🗣</span>
+                </Link>
+              </li>
+              <li>
+                <a
+                  className="App-link"
+                  href="https://thoughtbot.com/san-francisco"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Visit thoughtbot</a>
+              </li>
+            </ul>
+          </nav>
+          <header className="App-header">
+            <p>
+              <span role="img" aria-label="lightning">⚡</span>
+              &nbsp;Ligtning&nbsp;
+              <span role="img">🗣</span>
+              &nbsp;Talks&nbsp;
+              <span role="img" aria-label="lightning">⚡</span>
+            </p>
+            <div className="container talk-table-container">
+              <Table
+                talks={talks}
+                removeTalk={this.removeTalk}
+              />
+            </div>
+            <div className="container talk-form-container">
+              <Form handleSubmit={this.handleSubmit} />
+            </div>
+          </header>
+          <Switch>
+          </Switch>
+        </div>
+      </Router>
     );
   };
 };
