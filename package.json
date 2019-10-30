@@ -13,6 +13,7 @@
     ]
   },
   "dependencies": {
+    "express": "^4.17.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0"
@@ -20,7 +21,12 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "keywords": ["lightning", "talks", "CMS"],
+  "heroku-postbuild": "npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+  "keywords": [
+    "lightning",
+    "talks",
+    "CMS"
+  ],
   "license": "GPLv3",
   "name": "lightning",
   "private": true,
@@ -31,8 +37,9 @@
   },
   "scripts": {
     "build": "react-scripts build",
+    "client": "react-scripts start",
     "server": "NODE_ENV=production node server.js",
-    "start": "react-scripts start",
+    "start": "node server.js",
     "test": "react-scripts test"
   },
   "version": "0.0.1"
