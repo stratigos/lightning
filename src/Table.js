@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 const TableHeader = () => {
   return (
@@ -15,7 +16,11 @@ const TableBody = props => {
   const rows = props.talks.map((talk, index) => {
     return (
       <tr key={index} className="talk-table-row">
-        <td>{talk.title}</td>
+        <td>
+          <Link to={`/talks/${talk.id}`}>
+            {talk.title}
+          </Link>
+        </td>
         <td>
           <button onClick={() => props.removeTalk(index)}>
             <span role="img" aria-label="remove-talk">🗑</span>
