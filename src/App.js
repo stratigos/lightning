@@ -79,7 +79,6 @@ class App extends Component {
                 />
               </Route>
               <Route path={`/talks/:talkId`}>
-                <h1>WTF</h1>
                 <ShowTalk talks={talks} requestTalk={this.requestTalk} />
               </Route>
             </Switch>

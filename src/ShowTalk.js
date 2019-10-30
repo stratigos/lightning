@@ -1,5 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
+import Patience from "./Patience";
+import Talk from "./Talk";
 
 const ShowTalk = props => {
   const { talkId } = useParams();
@@ -8,11 +10,13 @@ const ShowTalk = props => {
     currentTalk => currentTalk.id === parseInt(talkId, 10)
   );
 
+  const displayTalkWhenReady = talk === undefined ?
+    <Patience /> :
+    <Talk talkRecord={talk} />;
+
   return (
-    <div className="container talk-container">
-      <p className="TODO-REMOVE-THIS">
-        "This is some JSX where a Talk component would appear"
-      </p>
+    <div className="container show-talk-container">
+      {displayTalkWhenReady}
     </div>
   );
 };
