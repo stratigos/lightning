@@ -5,8 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Form from "./Form";
-import Table from "./Table";
+import Home from "./Home";
 import Nav from "./Nav";
 import "./App.css";
 
@@ -76,23 +75,16 @@ class App extends Component {
               &nbsp;Talks&nbsp;
               <span role="img" aria-label="lightning">⚡</span>
             </p>
-            <div className="container talk-table-container">
-              <Table
-                talks={talks}
-                removeTalk={this.removeTalk}
-              />
-            </div>
-            <div className="container talk-form-container">
-              <Form handleSubmit={this.handleSubmit} />
-            </div>
+            <Switch>
+              <Route path="/">
+                <Home
+                  handleSubmit={this.handleSubmit}
+                  removeTalk={this.removeTalk}
+                  talks={talks}
+                />
+              </Route>
+            </Switch>
           </header>
-          <Switch>
-            {/*}
-            <Route path="/">
-              <Home />
-            </Route>
-            */}
-          </Switch>
         </div>
       </Router>
     );
