@@ -63,7 +63,7 @@ class App extends Component {
   };
 
   handleEditTalkSubmit = async talk => {
-    const response = await fetch(`/api/talks/${talk.id}/edit`, {
+    const response = await fetch(`/api/talks/${talk.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

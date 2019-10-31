@@ -42,12 +42,33 @@ app.post("/api/talks", (req, res) => {
   res.send(newTalk);
 });
 
+app.put("/api/talks/:id", function (req, res) {
+  console.log("Server: PUT request received: ", req.params, req.body);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'build')));
+  updateTalk = {
+    id: parseInt(req.params.id, 10),
+    title: req.body.talk.title,
+  };
 
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  talks = talks.map((talk, _index) => {
+    console.log("talk id: ", talk.id);
+    console.log("compare to updateTalk id: ", updateTalk.id);
+    if (talk.id === updateTalk.id) {
+      console.log("DEBUG: FOUND TALK TO REPLACE: ", talk, updateTalk); // TODO DEBUG REMOVE 🌈
+      return updateTalk;
+    }
+
+    return talk;
+  });
+
+  res.send(updateTalk);
+});
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "build")));
+
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
   });
 }
 
