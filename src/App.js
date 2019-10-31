@@ -72,7 +72,6 @@ class App extends Component {
     });
 
     const talkResponse = await response.text();
-    console.log("edit talk response: ", talkResponse); // TODO DEBUG 🌈
     const updatedTalk = JSON.parse(talkResponse);
 
     const updatedTalks = this.state.talks.map((talk, _index) => {

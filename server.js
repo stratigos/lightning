@@ -51,10 +51,7 @@ app.put("/api/talks/:id", function (req, res) {
   };
 
   talks = talks.map((talk, _index) => {
-    console.log("talk id: ", talk.id);
-    console.log("compare to updateTalk id: ", updateTalk.id);
     if (talk.id === updateTalk.id) {
-      console.log("DEBUG: FOUND TALK TO REPLACE: ", talk, updateTalk); // TODO DEBUG REMOVE 🌈
       return updateTalk;
     }
 
