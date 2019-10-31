@@ -5,6 +5,7 @@ import {
   Switch
 } from "react-router-dom";
 import AppTitle from "./AppTitle";
+import EditTalk from "./EditTalk";
 import Home from "./Home";
 import Nav from "./Nav";
 import ShowTalk from "./ShowTalk";
@@ -46,7 +47,7 @@ class App extends Component {
     });
   };
 
-  handleSubmit = async talk => {
+  handleNewTalkSubmit = async talk => {
     const response = await fetch("/api/talks", {
       method: "POST",
       headers: {
@@ -61,6 +62,29 @@ class App extends Component {
     this.setState({ talks: [...this.state.talks, newTalk] });
   };
 
+  handleEditTalkSubmit = async talk => {
+    const response = await fetch(`/api/talks/${talk.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({talk: talk}),
+    });
+
+    const talkResponse = await response.text();
+    const updatedTalk = JSON.parse(talkResponse);
+
+    const updatedTalks = this.state.talks.map((talk, _index) => {
+      if (talk.id === updatedTalk.id) {
+        return updatedTalk;
+      }
+
+      return talk;
+    });
+
+    this.setState({ talks: updatedTalks });
+  }
+
   render() {
     const { talks } = this.state;
 
@@ -73,13 +97,19 @@ class App extends Component {
             <Switch>
               <Route path="/" exact>
                 <Home
-                  handleSubmit={this.handleSubmit}
+                  handleNewTalkSubmit={this.handleNewTalkSubmit}
                   removeTalk={this.removeTalk}
                   talks={talks}
                 />
               </Route>
-              <Route path={`/talks/:talkId`}>
-                <ShowTalk talks={talks} requestTalk={this.requestTalk} />
+              <Route path={`/talks/:talkId`} exact>
+                <ShowTalk talks={talks} />
+              </Route>
+              <Route path={`/talks/:talkId/edit`} exact>
+                <EditTalk
+                  talks={talks}
+                  handleEditTalkSubmit={this.handleEditTalkSubmit}
+                />
               </Route>
             </Switch>
           </header>

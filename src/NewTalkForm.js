@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-class Form extends Component {
+class NewTalkForm extends Component {
   constructor(props) {
     super(props);
 
@@ -23,7 +23,7 @@ class Form extends Component {
   submitForm = event => {
     event.preventDefault();
 
-    this.props.handleSubmit(this.state);
+    this.props.handleNewTalkSubmit(this.state);
     this.setState(this.initialState);
   };
 
@@ -31,7 +31,7 @@ class Form extends Component {
     const { title } = this.state;
 
     return (
-      <form className="talk-form">
+      <form className="new-talk-form">
         <label>Title</label>
         <input
           type="text"
@@ -49,4 +49,4 @@ class Form extends Component {
   };
 };
 
-export default Form;
+export default NewTalkForm;

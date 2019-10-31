@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Form from "./Form";
+import NewTalkForm from "./NewTalkForm";
 import Table from "./Table";
 
 class Home extends Component {
   render() {
     const {
-      handleSubmit,
+      handleNewTalkSubmit,
       removeTalk,
       talks
     } = this.props;
@@ -19,7 +19,7 @@ class Home extends Component {
           />
         </div>
         <div className="container talk-form-container">
-          <Form handleSubmit={handleSubmit} />
+          <NewTalkForm handleNewTalkSubmit={handleNewTalkSubmit} />
         </div>
       </div>
     );
