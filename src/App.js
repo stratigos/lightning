@@ -5,6 +5,7 @@ import {
   Switch
 } from "react-router-dom";
 import AppTitle from "./AppTitle";
+import EditTalk from "./EditTalk";
 import Home from "./Home";
 import Nav from "./Nav";
 import ShowTalk from "./ShowTalk";
@@ -61,6 +62,30 @@ class App extends Component {
     this.setState({ talks: [...this.state.talks, newTalk] });
   };
 
+  handleEditTalkSubmit = async talk => {
+    const response = await fetch(`/api/talks/${talk.id}/edit`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({talk: talk}),
+    });
+
+    const talkResponse = await response.text();
+    console.log("edit talk response: ", talkResponse); // TODO DEBUG 🌈
+    const updatedTalk = JSON.parse(talkResponse);
+
+    const updatedTalks = this.state.talks.map((talk, _index) => {
+      if (talk.id === updatedTalk.id) {
+        return updatedTalk;
+      }
+
+      return talk;
+    });
+
+    this.setState({ talks: updatedTalks });
+  }
+
   render() {
     const { talks } = this.state;
 
@@ -82,8 +107,10 @@ class App extends Component {
                 <ShowTalk talks={talks} />
               </Route>
               <Route path={`/talks/:talkId/edit`} exact>
-                {/*<EditTalk talks={talks} editTalk={this.editTalk} />*/}
-                <h1>EditTalk</h1>
+                <EditTalk
+                  talks={talks}
+                  handleEditTalkSubmit={this.handleEditTalkSubmit}
+                />
               </Route>
             </Switch>
           </header>
