@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-const TableHeader = () => {
+export const TableHeader = () => {
   return (
     <thead className="talk-table-head">
       <tr>
@@ -12,7 +12,7 @@ const TableHeader = () => {
   );
 };
 
-const TableBody = props => {
+export const TableBody = props => {
   const rows = props.talks.map((talk, index) => {
     return (
       <tr key={index} className="talk-table-row">
