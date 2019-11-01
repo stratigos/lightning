@@ -84,3 +84,50 @@ describe("TableBody", () => {
     `);
   });
 });
+
+describe("Table", () => {
+  it("is expected to render Table with Talk titles and links", () => {
+    const talks = [
+      {
+        id: 98765,
+        title: "Highest Rated Evergreen Titles to Ensure Permanent Burnout"
+      },
+      {
+        id: 56789,
+        title: "My Journey as an Analog Cupcake Nomad"
+      }
+    ];
+
+    const removeTalk = () => null;
+
+    act(() => {
+      render(
+        <MemoryRouter>
+          <Table talks={talks} removeTalk={removeTalk} />
+        </MemoryRouter>,
+        containerElement
+      );
+    });
+
+    expect(pretty(containerElement.innerHTML)).toMatchInlineSnapshot(`
+      "<table class=\\"talk-table\\">
+        <thead class=\\"talk-table-head\\">
+          <tr>
+            <th>Talk</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class=\\"talk-table-row\\">
+            <td><a href=\\"/talks/98765\\">Highest Rated Evergreen Titles to Ensure Permanent Burnout</a></td>
+            <td><button><span role=\\"img\\" aria-label=\\"remove-talk\\">🗑</span></button></td>
+          </tr>
+          <tr class=\\"talk-table-row\\">
+            <td><a href=\\"/talks/56789\\">My Journey as an Analog Cupcake Nomad</a></td>
+            <td><button><span role=\\"img\\" aria-label=\\"remove-talk\\">🗑</span></button></td>
+          </tr>
+        </tbody>
+      </table>"
+    `);
+  });
+});

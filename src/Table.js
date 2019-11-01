@@ -33,7 +33,7 @@ export const TableBody = props => {
   return <tbody>{rows}</tbody>;
 };
 
-class Table extends Component {
+export class Table extends Component {
   render() {
     const { talks, removeTalk } = this.props;
 
